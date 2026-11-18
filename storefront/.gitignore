@@ -1,0 +1,10 @@
+node_modules/
+.next/
+out/
+.env
+.env.local
+.env.*.local
+.data/
+public/erp-app/
+*.log
+.DS_Store

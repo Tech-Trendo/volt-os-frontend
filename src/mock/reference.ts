@@ -1,0 +1,277 @@
+export interface ModuleDefinition {
+  slug: string;
+  title: string;
+  description: string;
+  domain: string;
+  editable: boolean;
+  placeholder?: boolean;
+  statuses: string[];
+}
+export interface ModuleGroup {
+  title: string;
+  ne: string;
+  domain: string;
+  icon: string;
+  modules: ModuleDefinition[];
+}
+const module = (
+  domain: string,
+  title: string,
+  editable = false,
+  placeholder = false,
+): ModuleDefinition => ({
+  slug: `${domain}/${title
+    .toLowerCase()
+    .replaceAll("&", "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/-$/, "")}`,
+  title,
+  description: `Manage and review ${title.toLowerCase()} across Volt OS.`,
+  domain,
+  editable,
+  placeholder,
+  statuses: ["Active", "Pending", "Completed", "Draft"],
+});
+const group = (
+  title: string,
+  ne: string,
+  domain: string,
+  icon: string,
+  items: string[],
+  editable: string[] = [],
+  placeholders: string[] = [],
+): ModuleGroup => ({
+  title,
+  ne,
+  domain,
+  icon,
+  modules: items.map((t) => module(domain, t, editable.includes(t), placeholders.includes(t))),
+});
+export const moduleGroups: ModuleGroup[] = [
+  group("Overview", "अवलोकन", "overview", "LayoutDashboard", ["Notifications", "My Tasks"]),
+  group(
+    "Sales & CRM",
+    "बिक्री तथा ग्राहक",
+    "sales",
+    "Users",
+    [
+      "CRM Overview",
+      "Leads",
+      "Customers & Accounts",
+      "Enquiries",
+      "Quotations",
+      "Sales Orders",
+      "Dealers & Partners",
+      "Activities",
+      "CRM Settings",
+    ],
+    ["Leads", "Customers & Accounts", "Enquiries", "Quotations", "Sales Orders"],
+  ),
+  group(
+    "Charging Network",
+    "चार्जिङ नेटवर्क",
+    "network",
+    "MapPin",
+    [
+      "Charging Equipment",
+      "Installation & Commissioning",
+      "Network Projects",
+      "Station Reports",
+      "Network Settings",
+    ],
+    [
+      "Charging Equipment",
+      "Installation & Commissioning",
+      "Network Projects",
+      "Station Reports",
+      "Network Settings",
+    ],
+  ),
+  group(
+    "Inventory",
+    "मौज्दात",
+    "inventory",
+    "Package",
+    [
+      "Stock Overview",
+      "Products & Equipment",
+      "Chargers",
+      "Charging Guns & Connectors",
+      "Cables & Accessories",
+      "Spare Parts",
+      "Warehouses",
+      "Stock Transfers",
+      "Serial Number Register",
+      "Stock Adjustments",
+      "Inventory Settings",
+    ],
+    ["Stock Overview", "Products & Equipment", "Warehouses"],
+  ),
+  group(
+    "Procurement & Imports",
+    "खरिद तथा आयात",
+    "procurement",
+    "Ship",
+    [
+      "Suppliers",
+      "Purchase Requests",
+      "Purchase Orders",
+      "Import Shipments",
+      "Shipment Tracking",
+      "Goods Receiving",
+      "Purchase Documents",
+      "Procurement Reports",
+      "Procurement Settings",
+    ],
+    ["Suppliers", "Purchase Orders", "Import Shipments", "Goods Receiving"],
+  ),
+  group(
+    "Projects & Installation",
+    "परियोजना तथा स्थापना",
+    "projects",
+    "FolderKanban",
+    [
+      "Project Overview",
+      "Projects",
+      "Site Inspections",
+      "Feasibility Assessments",
+      "Project Tasks",
+      "Team Assignments",
+      "Installation Schedule",
+      "Project Expenses",
+      "Commissioning Checklist",
+      "Project Reports",
+    ],
+    ["Projects"],
+  ),
+  group(
+    "Service & Maintenance",
+    "सेवा तथा मर्मत",
+    "service",
+    "Wrench",
+    [
+      "Service Overview",
+      "Service Requests",
+      "Complaints & Breakdowns",
+      "Work Orders",
+      "Preventive Maintenance",
+      "Technician Assignments",
+      "Warranty Claims",
+      "Service History",
+      "Spare Parts Usage",
+      "Service Reports",
+    ],
+    ["Service Requests", "Work Orders"],
+  ),
+  group(
+    "HRM",
+    "मानव संसाधन",
+    "hrm",
+    "Contact",
+    [
+      "Employees",
+      "Departments",
+      "Designations",
+      "Attendance",
+      "Leave Management",
+      "Payroll",
+      "Performance",
+      "HR Reports",
+    ],
+    ["Employees", "Departments"],
+    [],
+  ),
+  group(
+    "Finance & Accounting",
+    "वित्त तथा लेखा",
+    "finance",
+    "Wallet",
+    [
+      "Finance Overview",
+      "Sales Invoices",
+      "Purchase Bills",
+      "Receivables",
+      "Payables",
+      "Expenses",
+      "Project Costing",
+      "Payments & Receipts",
+      "Financial Reports",
+    ],
+    ["Sales Invoices", "Purchase Bills", "Expenses"],
+    [],
+  ),
+  group(
+    "Reports & Analytics",
+    "प्रतिवेदन तथा विश्लेषण",
+    "reports",
+    "ChartNoAxesCombined",
+    [
+      "Business Performance",
+      "Sales Analytics",
+      "Inventory Analytics",
+      "Procurement Analytics",
+      "Project Profitability",
+      "Station Operations",
+      "Service Analytics",
+      "Financial Analytics",
+      "Custom Reports",
+    ],
+    [],
+    [],
+  ),
+  group(
+    "Administration",
+    "प्रशासन",
+    "administration",
+    "Settings",
+    [
+      "Users",
+      "Roles & Permissions",
+      "Audit Trail",
+      "Notifications",
+      "Document Library",
+      "Organization Settings",
+      "System Settings",
+    ],
+    ["Users", "Roles & Permissions", "Audit Trail", "System Settings"],
+    [],
+  ),
+];
+export const allModules = moduleGroups.flatMap((g) => g.modules);
+export const customers = [
+  "Himalayan Mobility Pvt. Ltd.",
+  "Greenway Hospitality",
+  "Koshi Fleet Services",
+  "Summit Logistics",
+  "Lakeside Retail Group",
+  "Valley Auto Partners",
+  "Evergreen Resorts",
+  "Terai Transport Co.",
+  "Namaste Motors",
+  "Alpine Travel Services",
+  "Kathmandu Eco Transit",
+  "Janaki Hotel Group",
+  "Gandaki Commercial Group",
+  "Nepal Green Offices",
+  "Frontier Electric Motors",
+  "Riverstone Hotels",
+  "Highway Fleet Nepal",
+  "Dhaulagiri Adventures",
+  "Sunrise Mobility",
+  "Citylink Logistics",
+  "Mountain Gate Pvt. Ltd.",
+  "Lumbini Eco Resorts",
+  "Eastern Transport Group",
+  "Rupandehi Auto Services",
+  "Sajha Green Partners",
+];
+export const owners = [
+  "Aarav Shrestha",
+  "Priya Sharma",
+  "Suman Thapa",
+  "Nisha Karki",
+  "Bikash Rai",
+  "Anita Joshi",
+  "Ramesh Adhikari",
+  "Sarita Poudel",
+];

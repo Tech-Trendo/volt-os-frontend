@@ -1,0 +1,6 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs",
+  "installCommand": "cd .. && npm install && cd storefront && npm install",
+  "buildCommand": "cd .. && npm run build:erp-spa && cd storefront && npm run build"
+}

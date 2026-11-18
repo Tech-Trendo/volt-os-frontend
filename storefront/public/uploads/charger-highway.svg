@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" fill="none">
+  <rect width="800" height="600" rx="24" fill="#F4F5F6"/>
+  <rect x="190" y="70" width="420" height="460" rx="24" fill="#111827"/>
+  <rect x="225" y="104" width="350" height="135" rx="14" fill="#1F2937"/>
+  <path d="M404 134L382 172H401L395 208L421 164H400L404 134Z" fill="#10B981"/>
+  <rect x="240" y="274" width="140" height="165" rx="14" fill="#1F2937" stroke="#374151" stroke-width="2"/>
+  <rect x="420" y="274" width="140" height="165" rx="14" fill="#1F2937" stroke="#374151" stroke-width="2"/>
+  <text x="310" y="362" text-anchor="middle" fill="#9CA3AF" font-family="system-ui,sans-serif" font-size="15" font-weight="600">CCS2 GUN A</text>
+  <text x="490" y="362" text-anchor="middle" fill="#9CA3AF" font-family="system-ui,sans-serif" font-size="15" font-weight="600">CCS2 GUN B</text>
+  <text x="400" y="492" text-anchor="middle" fill="#F3F4F6" font-family="system-ui,sans-serif" font-size="18" font-weight="700">ULTRA-FAST HIGHWAY HUB · 120–180 kW</text>
+</svg>
