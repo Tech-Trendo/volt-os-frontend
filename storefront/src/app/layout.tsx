@@ -22,7 +22,14 @@ export async function generateMetadata(): Promise<Metadata> {
       description,
       images: ogImage ? [{ url: ogImage }] : [],
     },
-    icons: favicon ? { icon: favicon } : undefined,
+    icons: {
+      icon: [
+        { url: favicon || "/favicon.ico", sizes: "any" },
+        { url: "/logo.png", type: "image/png" },
+      ],
+      shortcut: favicon || "/favicon.ico",
+      apple: "/logo.png",
+    },
   };
 }
 
